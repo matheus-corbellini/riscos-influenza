@@ -64,29 +64,113 @@ const ResultsModal: React.FC<ResultsModalProps> = ({ assessment, onClose }) => {
     if (!resultsRef.current) return;
 
     try {
+      // Garantir que todo o conteúdo seja visível antes de capturar
+      const originalOverflow = resultsRef.current.style.overflow;
+      const originalMaxHeight = resultsRef.current.style.maxHeight;
+
+      resultsRef.current.style.overflow = "visible";
+      resultsRef.current.style.maxHeight = "none";
+
+      // Aguardar um momento para garantir que o layout seja recalculado
+      await new Promise((resolve) => setTimeout(resolve, 300));
+
       const canvas = await html2canvas(resultsRef.current, {
-        scale: 2,
+        scale: 1.5,
         useCORS: true,
         backgroundColor: "#ffffff",
+        height: resultsRef.current.scrollHeight,
+        windowHeight: resultsRef.current.scrollHeight,
+        allowTaint: true,
+        logging: false,
+        scrollX: 0,
+        scrollY: 0,
       });
 
-      const imgData = canvas.toDataURL("image/png");
+      // Restaurar estilos originais
+      resultsRef.current.style.overflow = originalOverflow;
+      resultsRef.current.style.maxHeight = originalMaxHeight;
+
       const pdf = new jsPDF("p", "mm", "a4");
 
-      const imgWidth = 210;
-      const pageHeight = 295;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      let heightLeft = imgHeight;
-      let position = 0;
+      const pdfWidth = 210; // A4 width in mm
+      const pdfHeight = 297; // A4 height in mm
+      const margin = 10; // Margem em mm
 
-      pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
+      const contentWidth = pdfWidth - margin * 2;
+      const maxContentHeight = pdfHeight - margin * 2;
 
-      while (heightLeft >= 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
+      // Calcular dimensões da imagem
+      const imgAspectRatio = canvas.width / canvas.height;
+      const imgWidth = contentWidth;
+      const imgHeight = contentWidth / imgAspectRatio;
+
+      // Adicionar sobreposição para evitar cortes visuais (5mm)
+      const overlap = 5; // mm
+      const effectivePageHeight = maxContentHeight + overlap;
+
+      // Calcular quantas "fatias" precisamos
+      const totalPages = Math.ceil(imgHeight / maxContentHeight);
+
+      for (let page = 0; page < totalPages; page++) {
+        if (page > 0) {
+          pdf.addPage();
+        }
+
+        // Calcular a porção da imagem para esta página
+        let sourceY = (page * maxContentHeight * canvas.height) / imgHeight;
+        let sourceHeight = Math.min(
+          (effectivePageHeight * canvas.height) / imgHeight,
+          canvas.height - sourceY
+        );
+
+        // Para páginas subsequentes, adicionar sobreposição no início
+        if (page > 0) {
+          const overlapPixels = (overlap * canvas.height) / imgHeight;
+          sourceY = Math.max(0, sourceY - overlapPixels);
+          sourceHeight = Math.min(
+            sourceHeight + overlapPixels,
+            canvas.height - sourceY
+          );
+        }
+
+        // Criar canvas temporário para esta seção
+        const tempCanvas = document.createElement("canvas");
+        const tempCtx = tempCanvas.getContext("2d");
+        tempCanvas.width = canvas.width;
+        tempCanvas.height = sourceHeight;
+
+        if (tempCtx) {
+          // Desenhar apenas a seção necessária
+          tempCtx.drawImage(
+            canvas,
+            0,
+            sourceY,
+            canvas.width,
+            sourceHeight,
+            0,
+            0,
+            canvas.width,
+            sourceHeight
+          );
+
+          const tempImgData = tempCanvas.toDataURL("image/png", 1.0);
+          const sectionHeight = (sourceHeight * imgWidth) / canvas.width;
+
+          // Ajustar posição Y para páginas subsequentes com sobreposição
+          let yPosition = margin;
+          if (page > 0) {
+            yPosition = margin - (overlap * imgWidth) / canvas.width;
+          }
+
+          pdf.addImage(
+            tempImgData,
+            "PNG",
+            margin,
+            yPosition,
+            imgWidth,
+            sectionHeight
+          );
+        }
       }
 
       const today = new Date().toLocaleDateString("pt-BR");

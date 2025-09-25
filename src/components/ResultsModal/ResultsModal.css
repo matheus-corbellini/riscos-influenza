@@ -618,3 +618,34 @@
     gap: 1rem;
   }
 }
+
+/* Estilos específicos para renderização de PDF */
+@media print {
+  .modal-body {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .improvements-section,
+  .recommendations-section,
+  .blocks-summary {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .improvement-item {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+
+  .recommendation {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .block-summary {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}
