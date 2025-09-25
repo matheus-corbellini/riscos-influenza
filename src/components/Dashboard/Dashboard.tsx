@@ -177,11 +177,10 @@ const Dashboard: React.FC = () => {
       {showWelcome && (
         <div className="modal-overlay">
           <div className="welcome-modal">
-            <div className="modal-header">
-              <h2>Bem-vindo ao Sistema de Avaliação de Risco</h2>
-              <button className="close-button" onClick={handleWelcomeClose}>
-                ×
-              </button>
+            <div className="modal-header-welcome">
+              <h2 className="orientations-title">
+                Bem-vindo ao Sistema de Avaliação de Risco
+              </h2>
             </div>
             <div className="modal-body">
               <div className="welcome-content">

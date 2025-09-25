@@ -85,8 +85,7 @@ export const blocks: Block[] = [
         text: "Qual é a principal fonte de água utilizada para as aves?",
         answers: [
           { text: "Rede pública ou poço com proteção", score: 0 },
-          { text: "Vertente ou açude fechado", score: 1 },
-          { text: "Açude ou rio aberto", score: 2 },
+          { text: "Açude, lago ou rio", score: 1 },
         ],
         feedback:
           "Fontes de água abertas podem estar contaminadas por fezes de aves silvestres. Priorize fontes protegidas e realize análises microbiológicas regulares da água.",

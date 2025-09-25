@@ -190,15 +190,15 @@
   font-weight: 500;
 }
 
-.modal-header {
+.modal-header-welcome {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 1.5rem 2rem;
   border-bottom: 1px solid #e5e7eb;
 }
 
-.modal-header h2 {
+.modal-header-welcome h2 {
   margin: 0;
   color: #1f2937;
   font-size: 1.5rem;
@@ -397,11 +397,11 @@
     color: #bfdbfe;
   }
 
-  .modal-header {
+  .modal-header-welcome {
     border-color: #374151;
   }
 
-  .modal-header h2 {
+  .modal-header-welcome h2 {
     color: rgba(255, 255, 255, 0.87);
   }
 
@@ -508,5 +508,13 @@
   .reset-button {
     width: 100%;
     justify-content: center;
+  }
+
+  .blocks-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem;
+    max-width: 100%;
+    margin: 0 auto;
   }
 }
