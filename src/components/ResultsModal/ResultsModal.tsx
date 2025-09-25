@@ -116,7 +116,7 @@ const ResultsModal: React.FC<ResultsModalProps> = ({ assessment, onClose }) => {
     <div className="modal-overlay">
       <div className="results-modal">
         <div className="modal-header">
-          <h2>Resultados da Avaliação</h2>
+          <h2 className="modal-header-title">Resultados da Avaliação</h2>
           <div className="header-actions">
             <button className="download-button" onClick={generatePDF}>
               <FaDownload /> Exportar PDF
@@ -214,9 +214,8 @@ const ResultsModal: React.FC<ResultsModalProps> = ({ assessment, onClose }) => {
           {improvementPoints.length > 0 && (
             <div className="improvements-section">
               <div className="critical-alert">
-                <FaExclamationTriangle className="alert-icon" />
                 <div className="alert-content">
-                  <h3>
+                  <h3 className="alert-title">
                     <FaExclamationTriangle className="alert-title-icon" />
                     PONTOS CRÍTICOS IDENTIFICADOS
                   </h3>
@@ -230,7 +229,7 @@ const ResultsModal: React.FC<ResultsModalProps> = ({ assessment, onClose }) => {
                 </div>
               </div>
 
-              <h3>
+              <h3 className="section-title">
                 <FaExclamationTriangle className="section-icon" />
                 Pontos que Necessitam Intervenção Urgente
               </h3>

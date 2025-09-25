@@ -585,3 +585,36 @@
     color: rgba(255, 255, 255, 0.6);
   }
 }
+
+@media (max-width: 768px) {
+  .alert-title {
+    justify-content: center;
+    width: 120%;
+  }
+
+  .alert-title-icon {
+    display: none;
+  }
+
+  .section-icon {
+    display: none;
+  }
+
+  .download-button {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    margin-left: 2rem;
+  }
+
+  .modal-header-title {
+    width: 100%;
+    text-align: center;
+  }
+
+  .modal-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+}

@@ -39,16 +39,15 @@ const Dashboard: React.FC = () => {
     isComplete: false,
   });
   const [activeBlock, setActiveBlock] = useState<Block | null>(null);
-  const [showInstructions, setShowInstructions] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(true);
   const [showResults, setShowResults] = useState(false);
 
   const handleBlockClick = (block: Block) => {
     setActiveBlock(block);
-    setShowInstructions(true);
   };
 
-  const handleStartQuestions = () => {
-    setShowInstructions(false);
+  const handleWelcomeClose = () => {
+    setShowWelcome(false);
   };
 
   const handleQuestionComplete = (answers: UserAnswer[]) => {
@@ -88,7 +87,6 @@ const Dashboard: React.FC = () => {
 
   const handleCloseModal = () => {
     setActiveBlock(null);
-    setShowInstructions(false);
   };
 
   const getBlockProgress = (blockId: number) => {
@@ -176,17 +174,26 @@ const Dashboard: React.FC = () => {
         </div>
       )}
 
-      {activeBlock && showInstructions && (
+      {showWelcome && (
         <div className="modal-overlay">
-          <div className="instructions-modal">
+          <div className="welcome-modal">
             <div className="modal-header">
-              <h2>Instruções - {activeBlock.title}</h2>
-              <button className="close-button" onClick={handleCloseModal}>
+              <h2>Bem-vindo ao Sistema de Avaliação de Risco</h2>
+              <button className="close-button" onClick={handleWelcomeClose}>
                 ×
               </button>
             </div>
             <div className="modal-body">
-              <p>{activeBlock.description}</p>
+              <div className="welcome-content">
+                <div className="welcome-icon">
+                  <FaGraduationCap />
+                </div>
+                <h3>Avaliação de Risco para Influenza Aviária</h3>
+                <p>
+                  Sistema de prevenção e controle de biosseguridade em granjas
+                  avícolas
+                </p>
+              </div>
 
               <div className="interview-guidelines">
                 <h3>
@@ -279,33 +286,33 @@ const Dashboard: React.FC = () => {
               </div>
 
               <div className="instructions-content">
-                <h3>Como responder:</h3>
+                <h3>Como usar o sistema:</h3>
                 <ul>
+                  <li>Clique em qualquer bloco para iniciar a avaliação</li>
                   <li>Leia cada pergunta com atenção</li>
                   <li>
                     Selecione a resposta que melhor descreve a situação atual
                   </li>
                   <li>Seja honesto para obter uma avaliação precisa</li>
+                  <li>
+                    Você pode revisar e alterar respostas a qualquer momento
+                  </li>
                 </ul>
                 <p>
-                  <strong>Total de perguntas neste bloco:</strong>{" "}
-                  {activeBlock.questions.length}
+                  <strong>Total de blocos disponíveis:</strong> {blocks.length}
                 </p>
               </div>
             </div>
             <div className="modal-footer">
-              <button className="secondary-button" onClick={handleCloseModal}>
-                Cancelar
-              </button>
-              <button className="primary-button" onClick={handleStartQuestions}>
-                Iniciar Perguntas
+              <button className="primary-button" onClick={handleWelcomeClose}>
+                Entendi, Vamos Começar!
               </button>
             </div>
           </div>
         </div>
       )}
 
-      {activeBlock && !showInstructions && (
+      {activeBlock && (
         <QuestionModal
           block={activeBlock}
           existingAnswers={assessment.answers}

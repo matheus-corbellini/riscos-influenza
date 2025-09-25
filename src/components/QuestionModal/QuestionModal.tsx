@@ -130,14 +130,6 @@ const QuestionModal: React.FC<QuestionModalProps> = ({
                 >
                   <div className="answer-content">
                     <div className="answer-text">{answer.text}</div>
-                    <div className="answer-score">
-                      Risco:{" "}
-                      {answer.score === 0
-                        ? "Baixo"
-                        : answer.score === 1
-                        ? "Moderado"
-                        : "Alto"}
-                    </div>
                   </div>
                   <div className="answer-radio">
                     <div

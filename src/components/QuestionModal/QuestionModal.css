@@ -155,14 +155,7 @@
 .answer-text {
   font-weight: 500;
   color: #1f2937;
-  margin-bottom: 0.5rem;
   line-height: 1.4;
-}
-
-.answer-score {
-  font-size: 0.875rem;
-  color: #6b7280;
-  font-weight: 500;
 }
 
 .answer-radio {
@@ -317,10 +310,6 @@
 
   .answer-text {
     color: rgba(255, 255, 255, 0.87);
-  }
-
-  .answer-score {
-    color: rgba(255, 255, 255, 0.6);
   }
 
   .radio {

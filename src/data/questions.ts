@@ -264,7 +264,7 @@ export const scoreRanges: ScoreRange[] = [
     max: 20,
     level: "moderado",
     message:
-      "Sua granja apresenta risco MODERADO para influenza aviária. Várias melhorias nas medidas de biosseguridade são necessárias para reduzir significativamente o risco de introdução do vírus.",
+      "Sua granja apresenta risco MODERADO para influenza aviária. Algumas melhorias nas medidas de biosseguridade podem reduzir significativamente o risco de introdução do vírus..",
     color: "#F59E0B",
   },
   {
@@ -280,7 +280,7 @@ export const scoreRanges: ScoreRange[] = [
     max: 50,
     level: "muito alto",
     message:
-      "ALERTA MÁXIMO! Sua granja apresenta risco MUITO ALTO para influenza aviária. A situação é crítica e requer intervenção IMEDIATA. Todas as medidas de biosseguridade precisam ser revisadas e implementadas urgentemente.",
+      "ALERTA MÁXIMO! Sua granja apresenta risco MUITO ALTO para influenza aviária. A situação requer intervenção para evitar INGRESSO do vírus no futuro. As medidas de biosseguridade abaixo precisam ser revisadas e implementadas o mais rápido possível. Procure a ajuda de um técnico.",
     color: "#DC2626",
   },
 ];
