@@ -35,11 +35,17 @@
   margin-bottom: 0;
 }
 
-.reset-button {
+.header-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.reset-button,
+.logout-button {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: #ef4444;
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -51,13 +57,28 @@
   flex-shrink: 0;
 }
 
+.reset-button {
+  background: #ef4444;
+}
+
 .reset-button:hover {
   background: #dc2626;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
 }
 
-.reset-icon {
+.logout-button {
+  background: #64748b;
+}
+
+.logout-button:hover {
+  background: #475569;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(100, 116, 139, 0.3);
+}
+
+.reset-icon,
+.logout-icon {
   font-size: 1rem;
 }
 
@@ -505,7 +526,13 @@
     gap: 1rem;
   }
 
-  .reset-button {
+  .header-buttons {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .reset-button,
+  .logout-button {
     width: 100%;
     justify-content: center;
   }

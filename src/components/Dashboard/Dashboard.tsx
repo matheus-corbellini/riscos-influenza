@@ -14,12 +14,14 @@ import {
   FaEdit,
   FaBan,
   FaRedo,
+  FaSignOutAlt,
 } from "react-icons/fa";
 import type { Block, Assessment, UserAnswer } from "../../types";
 import { blocks } from "../../data/questions";
 import BlockCard from "../BlockCard/BlockCard";
 import QuestionModal from "../QuestionModal/QuestionModal";
 import ResultsModal from "../ResultsModal/ResultsModal";
+import { authService } from "../../services/authService";
 import "./Dashboard.css";
 
 const iconMap = {
@@ -114,6 +116,14 @@ const Dashboard: React.FC = () => {
     setShowResults(false);
   };
 
+  const handleLogout = async () => {
+    try {
+      await authService.logOut();
+    } catch (error) {
+      console.error("Erro ao fazer logout:", error);
+    }
+  };
+
   return (
     <div className="dashboard">
       <div className="dashboard-header">
@@ -125,10 +135,16 @@ const Dashboard: React.FC = () => {
               avícolas
             </p>
           </div>
-          <button className="reset-button" onClick={handleResetAssessment}>
-            <FaRedo className="reset-icon" />
-            Reiniciar Avaliação
-          </button>
+          <div className="header-buttons">
+            <button className="reset-button" onClick={handleResetAssessment}>
+              <FaRedo className="reset-icon" />
+              Reiniciar Avaliação
+            </button>
+            <button className="logout-button" onClick={handleLogout}>
+              <FaSignOutAlt className="logout-icon" />
+              Sair
+            </button>
+          </div>
         </div>
 
         <div className="progress-summary">
