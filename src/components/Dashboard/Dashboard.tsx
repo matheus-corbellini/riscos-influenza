@@ -120,7 +120,7 @@ const Dashboard: React.FC = () => {
     try {
       await authService.logOut();
     } catch (error) {
-      console.error("Erro ao fazer logout:", error);
+      // Erro ao fazer logout
     }
   };
 

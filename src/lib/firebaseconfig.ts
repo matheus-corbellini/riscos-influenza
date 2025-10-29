@@ -16,8 +16,8 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 // Configurar persistência de sessão - usuário precisa fazer login toda vez que abrir o navegador
-setPersistence(auth, browserSessionPersistence).catch((error) => {
-  console.error("Erro ao configurar persistência:", error);
+setPersistence(auth, browserSessionPersistence).catch(() => {
+  // Erro ao configurar persistência
 });
 
 export { app, auth, db };

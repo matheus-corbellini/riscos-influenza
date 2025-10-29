@@ -176,7 +176,6 @@ const ResultsModal: React.FC<ResultsModalProps> = ({ assessment, onClose }) => {
       const today = new Date().toLocaleDateString("pt-BR");
       pdf.save(`relatorio-avaliacao-aviario-${today}.pdf`);
     } catch (error) {
-      console.error("Erro ao gerar PDF:", error);
       alert("Erro ao gerar o PDF. Tente novamente.");
     }
   };
