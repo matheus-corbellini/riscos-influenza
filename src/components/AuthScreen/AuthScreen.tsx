@@ -2,9 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import type { LoginCredentials, RegisterCredentials } from "../../types/user";
 import "./AuthScreen.css";
-const logoUrl = `${
-  import.meta.env.BASE_URL
-}logo-escura-r2r65gmwcd2sibsrdhkz6jl7gvdxxc85k9l23kifpc.png`;
+import logo from "../../../public/logo-escura-r2r65gmwcd2sibsrdhkz6jl7gvdxxc85k9l23kifpc.png";
 
 export default function AuthScreen() {
   const [isLogin, setIsLogin] = useState(true);
@@ -44,10 +42,7 @@ export default function AuthScreen() {
   return (
     <div className="auth-container">
       <video autoPlay loop muted playsInline className="background-video">
-        <source
-          src={`${import.meta.env.BASE_URL}Natureza_e_Animais_Sem_Texto.mp4`}
-          type="video/mp4"
-        />
+        <source src="/Natureza_e_Animais_Sem_Texto.mp4" type="video/mp4" />
       </video>
 
       <div className="auth-overlay"></div>
@@ -62,7 +57,7 @@ export default function AuthScreen() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src={logoUrl} alt="Logo" className="logo-image" />
+                  <img src={logo} alt="Logo" className="logo-image" />
                 </a>
               </div>
             </div>
