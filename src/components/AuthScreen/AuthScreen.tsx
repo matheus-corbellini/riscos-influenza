@@ -2,7 +2,9 @@ import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import type { LoginCredentials, RegisterCredentials } from "../../types/user";
 import "./AuthScreen.css";
-import logo from "../../../public/logo-escura-r2r65gmwcd2sibsrdhkz6jl7gvdxxc85k9l23kifpc.png";
+const logoUrl = `${
+  import.meta.env.BASE_URL
+}logo-escura-r2r65gmwcd2sibsrdhkz6jl7gvdxxc85k9l23kifpc.png`;
 
 export default function AuthScreen() {
   const [isLogin, setIsLogin] = useState(true);
@@ -60,7 +62,7 @@ export default function AuthScreen() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src={logo} alt="Logo" className="logo-image" />
+                  <img src={logoUrl} alt="Logo" className="logo-image" />
                 </a>
               </div>
             </div>
