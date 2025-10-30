@@ -62,7 +62,7 @@ export default function AuthScreen() {
                 </a>
               </div>
             </div>
-            <h1 className="auth-title">Sistema de Biossegurança</h1>
+            <h1 className="auth-title">Sistema de Biosseguridade</h1>
             <p className="auth-subtitle">
               Prevenção e Controle de Riscos - Influenza Aviária
             </p>
