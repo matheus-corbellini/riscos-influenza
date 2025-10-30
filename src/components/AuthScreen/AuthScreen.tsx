@@ -42,7 +42,10 @@ export default function AuthScreen() {
   return (
     <div className="auth-container">
       <video autoPlay loop muted playsInline className="background-video">
-        <source src="/Natureza_e_Animais_Sem_Texto.mp4" type="video/mp4" />
+        <source
+          src={`${import.meta.env.BASE_URL}Natureza_e_Animais_Sem_Texto.mp4`}
+          type="video/mp4"
+        />
       </video>
 
       <div className="auth-overlay"></div>
